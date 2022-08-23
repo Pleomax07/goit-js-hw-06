@@ -17,25 +17,44 @@ const images = [
 
 // <ul class="gallery"></ul>
 
-// Используй массив объектов images для создания элементов <img> вложенных в <li>. Для создания разметки используй шаблонные строки и метод insertAdjacentHTML().
+// Используй массив объектов images для создания элементов <img> вложенных в <li>.
+// Для создания разметки используй шаблонные строки и метод insertAdjacentHTML().
 
 // Все элементы галереи должны добавляться в DOM за одну операцию вставки.
 // Добавь минимальное оформление галереи флексбоксами или гридами через CSS классы.
 
-for (const image of images) {
+
+const imagesValues = images.map((option) => {
   const galleryEl = document.querySelector(".gallery");
-  galleryEl.insertAdjacentHTML(
-    "beforeend",
-    `<li><img src="${image.url}" alt="${image.alt}" width=800px></li>`
-  );
-  console.log(image);
 
   galleryEl.style.cssText = `
-display: flex;
-flex-direction:column;
-align-items: center;
-background-color: grey;
-list-style:none;
-gap: 30px;
-`;
-}
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  background-color: grey;
+  list-style:none;
+  gap: 30px;
+  `;
+  return galleryEl.insertAdjacentHTML(
+    "beforeend",
+    `<li><img src="${option.url}" alt="${option.alt}" width=800px></li>`
+  );
+});
+
+// for (const image of images) {
+//   const galleryEl = document.querySelector(".gallery");
+//   galleryEl.insertAdjacentHTML(
+//     "beforeend",
+//     `<li><img src="${image.url}" alt="${image.alt}" width=800px></li>`
+//   );
+//   console.log(image);
+
+//   galleryEl.style.cssText = `
+// display: flex;
+// flex-direction:column;
+// align-items: center;
+// background-color: grey;
+// list-style:none;
+// gap: 30px;
+// `;
+// }
