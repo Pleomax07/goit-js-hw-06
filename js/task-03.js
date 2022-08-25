@@ -23,38 +23,23 @@ const images = [
 // Все элементы галереи должны добавляться в DOM за одну операцию вставки.
 // Добавь минимальное оформление галереи флексбоксами или гридами через CSS классы.
 
+const galleryEl = document.querySelector(".gallery");
 
-const imagesValues = images.map((option) => {
-  const galleryEl = document.querySelector(".gallery");
+const listGallery = (item) => {
+  return `<li>
+    <img src="${item.url}" alt="${item.alt}" width = 800/>
+  </li>`;
+};
 
-  galleryEl.style.cssText = `
-  display: flex;
-  flex-direction:column;
-  align-items: center;
-  background-color: grey;
-  list-style:none;
-  gap: 30px;
-  `;
-  return galleryEl.insertAdjacentHTML(
-    "beforeend",
-    `<li><img src="${option.url}" alt="${option.alt}" width=800px></li>`
-  );
-});
+galleryEl.style.cssText = `
+display: flex;
+flex-direction:column;
+align-items: center;
+background-color: grey;
+list-style:none;
+gap: 30px;
+`;
 
-// for (const image of images) {
-//   const galleryEl = document.querySelector(".gallery");
-//   galleryEl.insertAdjacentHTML(
-//     "beforeend",
-//     `<li><img src="${image.url}" alt="${image.alt}" width=800px></li>`
-//   );
-//   console.log(image);
+const markup = images.map(listGallery).join("");
 
-//   galleryEl.style.cssText = `
-// display: flex;
-// flex-direction:column;
-// align-items: center;
-// background-color: grey;
-// list-style:none;
-// gap: 30px;
-// `;
-// }
+galleryEl.insertAdjacentHTML("beforeend", markup);
